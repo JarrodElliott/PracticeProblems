@@ -1,0 +1,40 @@
+4.1 Given a directed graph, design an algorithm to find out whether there is a route between two nodes.
+//Two approaches... Breadth-first search or Depth first search. 
+//Trade-offs: BFS finds shortest path. DFS less space.
+
+use BFS
+uses queue
+get nodes A (start), B (end)
+start at A
+put A into queue
+
+loop until found or end:
+	if queue isn't empty
+		if not visited
+			pop from queue and store as current
+			mark as visited
+			check if current is end node
+				if end, return true
+			get A's children (put each into the end of the queue)
+	else return false
+
+Queue q = new Queue();
+Node start = a;
+Node end = b;
+Node current = null;
+start.marked = true;
+q.enqueue(start);
+while(!q.isEmpty()){
+	current = q.dequeue();
+	current.visited = true;
+	if(current == end){
+		return true;
+	}
+
+	for( Node x : current.children){
+		if(!x.marked){
+			q.enqueue(x);
+			q.marked = true;
+		{
+	}
+}

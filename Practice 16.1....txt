@@ -1,0 +1,73 @@
+
+16.1 Number Swapper: Write a function to swap a number in place (that is, without temporary variables).
+
+//assuming a = 3, b = 8...
+public void swapNum(int a, int b){
+	a = a + b;  //3 + 8... a = 11
+	b = a - b;  //11 - 8... b = 3
+	a = a - b;  //11 - 3... a = 8
+}
+
+OR using bit manipulation:
+//assuming a = 3 = 0011, b = 8 = 1000...
+public void swapNum(int a, int b){ //also works for other data types...
+	a = a ^ b; //a = 1011
+	b = a ^ b; //b = 0011
+	a = a ^ b; //a = 1000
+}
+
+
+16.2 Word Frequencies: Design a method to find the fequency of occurrences of any given word in a book. 
+What if we were running this algorithm multiple times?
+
+A)//separating into parts... 
+public int wordFrequency( String word, String[] book ){
+
+  int wordCount = 0;
+
+  for( int i = 0; i < book.lentgh; i++){
+    if ( book[i].equals(word)){
+      wordCount++;
+  }
+
+  return wordCount;
+
+}
+
+B)//What if we were running this algorithm multiple times?
+
+...main(...){
+  String[] bookA;
+  HashMap<String, Integer> bookHashA = new HashMap<String, Integer>();
+  ...
+  populateBookHash(bookHashA, bookA);
+  ...
+  ...
+  wordCount( "potato", bookHashA );
+  wordCount( "would", bookHashA );
+}
+
+public void populateBookHash( HashMap<String, Integer> hash, String[] book){
+  String word;
+  for( int i = 0; i < book.length; i++){
+    word = book[i].toLower();
+    if( hash.containsKey(word) ){
+      hash.put(word, hash.get(word)++);
+    }
+    else{
+      hash.put(word, 1);
+    }
+  }
+}
+
+public int wordCount( String word, HashMap<String, Integer> bookHash ){
+
+  //for extra checking...
+  //if ( word == null|| bookHash == null ) { return -1 }
+  word = word.toLowerCase();
+  if(bookHash.containsKey(word)){
+      return bookHash.get(word);
+  }
+  else{ return 0; }
+}
+
